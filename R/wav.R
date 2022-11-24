@@ -30,6 +30,7 @@ read_wav <- function(path) {
 }
 
 #' @describeIn read_wav Write a wav file.
+#' @export
 write_wav <- function(x, path, sample_rate = 44100, bit_depth = 32) {
   if (is.integer(x)) {
     write_wav_int(x, path, sample_rate = sample_rate, bit_depth)
