@@ -5,8 +5,8 @@ read_wav_dr <- function(path) {
     .Call(`_wav_read_wav_dr`, path)
 }
 
-write_wav_int <- function(x, path, sample_rate = 44100L, bit_depth = 16L) {
-    .Call(`_wav_write_wav_int`, x, path, sample_rate, bit_depth)
+write_wav_int <- function(x, path, sample_rate = 44100L, bit_depth = 16L, normalize = TRUE) {
+    .Call(`_wav_write_wav_int`, x, path, sample_rate, bit_depth, normalize)
 }
 
 write_wav_dbl <- function(x, path, sample_rate = 44100L, bit_depth = 32L) {

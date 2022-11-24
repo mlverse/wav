@@ -22,8 +22,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // write_wav_int
-bool write_wav_int(const IntegerMatrix& x, const std::string& path, int sample_rate, int bit_depth);
-RcppExport SEXP _wav_write_wav_int(SEXP xSEXP, SEXP pathSEXP, SEXP sample_rateSEXP, SEXP bit_depthSEXP) {
+bool write_wav_int(const IntegerMatrix& x, const std::string& path, int sample_rate, int bit_depth, bool normalize);
+RcppExport SEXP _wav_write_wav_int(SEXP xSEXP, SEXP pathSEXP, SEXP sample_rateSEXP, SEXP bit_depthSEXP, SEXP normalizeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -31,7 +31,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const std::string& >::type path(pathSEXP);
     Rcpp::traits::input_parameter< int >::type sample_rate(sample_rateSEXP);
     Rcpp::traits::input_parameter< int >::type bit_depth(bit_depthSEXP);
-    rcpp_result_gen = Rcpp::wrap(write_wav_int(x, path, sample_rate, bit_depth));
+    Rcpp::traits::input_parameter< bool >::type normalize(normalizeSEXP);
+    rcpp_result_gen = Rcpp::wrap(write_wav_int(x, path, sample_rate, bit_depth, normalize));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -52,7 +53,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_wav_read_wav_dr", (DL_FUNC) &_wav_read_wav_dr, 1},
-    {"_wav_write_wav_int", (DL_FUNC) &_wav_write_wav_int, 4},
+    {"_wav_write_wav_int", (DL_FUNC) &_wav_write_wav_int, 5},
     {"_wav_write_wav_dbl", (DL_FUNC) &_wav_write_wav_dbl, 4},
     {NULL, NULL, 0}
 };

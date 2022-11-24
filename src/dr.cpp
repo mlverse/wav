@@ -29,31 +29,37 @@ NumericMatrix read_wav_dr (const std::string& path) {
 }
 
 template<typename T>
-T int_to (int v) {
-  return ((double)v/std::numeric_limits<int>::max())*std::numeric_limits<T>::max();
+T int_to (int v, bool normalize) {
+  if (normalize) {
+    return ((double)v/std::numeric_limits<int>::max())*std::numeric_limits<T>::max();
+  }
+
+  return v;
 }
 
 template<>
-uint8_t int_to (int v) {
+uint8_t int_to (int v, bool normalize) {
   // 8 bit audio are actually unsigned ints thus we need to specialize here so
   // we correctly create values in (0, 255) range.
-  return (((double)v/std::numeric_limits<int>::max())+1)/2*255;
+  if (normalize) {
+    return (((double)v/std::numeric_limits<int>::max())+1)/2*255;
+  }
+
+  return v;
 }
 
 template<typename T>
-std::vector<T> make_buffer (IntegerMatrix x) {
+std::vector<T> make_buffer (IntegerMatrix x, bool normalize) {
   auto buffer = std::vector<T>(x.size());
-
-  std::transform(x.begin(), x.end(), buffer.begin(), [](int v) {
-    return int_to<T>(v);
+  std::transform(x.begin(), x.end(), buffer.begin(), [&normalize](int v) {
+    return int_to<T>(v, normalize);
   });
-
   return buffer;
 }
 
 // [[Rcpp::export]]
 bool write_wav_int (const IntegerMatrix& x, const std::string& path, int sample_rate = 44100,
-                   int bit_depth = 16) {
+                   int bit_depth = 16, bool normalize = true) {
 
   drwav_data_format format;
 
@@ -68,10 +74,10 @@ bool write_wav_int (const IntegerMatrix& x, const std::string& path, int sample_
 
   if (bit_depth == 8) {
     // bit_depth 8 should actually be a unsigned int.
-    drwav_write_pcm_frames(&wav, x.ncol(), &make_buffer<uint8_t>(x)[0]);
+    drwav_write_pcm_frames(&wav, x.ncol(), &make_buffer<uint8_t>(x, normalize)[0]);
   }
   else if (bit_depth == 16) {
-    drwav_write_pcm_frames(&wav, x.ncol(), &make_buffer<int16_t>(x)[0]);
+    drwav_write_pcm_frames(&wav, x.ncol(), &make_buffer<int16_t>(x, normalize)[0]);
   }
   else if (bit_depth == 32) {
     drwav_write_pcm_frames(&wav, x.ncol(), x.begin());
