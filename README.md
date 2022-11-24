@@ -6,7 +6,9 @@
 [![Codecov test coverage](https://codecov.io/gh/mlverse/wav/branch/main/graph/badge.svg)](https://app.codecov.io/gh/mlverse/wav?branch=main)
 <!-- badges: end -->
 
-The goal of wav is to ...
+`wav` allows reading and writing [WAV](https://en.wikipedia.org/wiki/WAV) files with
+many different encodings. It uses  the [dr_libs/dr_wav](https://github.com/mackron/dr_libs)
+C library.
 
 ## Installation
 
@@ -17,12 +19,4 @@ You can install the development version of wav from [GitHub](https://github.com/
 devtools::install_github("mlverse/wav")
 ```
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(wav)
-## basic example code
-```
 
