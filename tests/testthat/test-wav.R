@@ -73,7 +73,7 @@ test_that("errors on writing", {
   )
 
   expect_error(
-    write_wav(matrix(0, nrow = 655555555, ncol = 2), path = temp),
+    write_wav(matrix(0, nrow = 6555555, ncol = 2), path = temp),
     regexp = "Number of channels"
   )
 
@@ -90,6 +90,16 @@ test_that("errors on writing", {
   expect_error(
     write_wav(matrix(0L, nrow = 2, ncol = 1000), path = temp, bit_depth = 24),
     regexp = "Can't write file with"
+  )
+
+  expect_error(
+    write_wav(array(0L, dim = c(1, 2, 100)), path = temp, bit_depth = 24),
+    regexp = "Not a matrix"
+  )
+
+  expect_error(
+    write_wav(matrix(2, nrow = 2, ncol = 1000), path = temp, bit_depth = 32),
+    regexp = "range"
   )
 
 })

@@ -52,6 +52,11 @@ write_wav <- function(x, path, sample_rate = 44100, bit_depth = 32, ..., normali
   if (is.integer(x)) {
     write_wav_int(x, path, sample_rate = sample_rate, bit_depth, normalize)
   } else if (is.double(x)) {
+
+    if (any(x < -1) || any(x > 1)) {
+      stop("When inputs is numeric, amplitudes should be in the range [-1,1].")
+    }
+
     write_wav_dbl(x, path, sample_rate = sample_rate, bit_depth)
   } else {
     stop("Only integers and double matrices are supported.")
