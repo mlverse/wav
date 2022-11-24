@@ -7,7 +7,7 @@
 \usage{
 read_wav(path)
 
-write_wav(x, path, sample_rate = 44100, bit_depth = 32, ..., normalize = FALSE)
+write_wav(x, path, sample_rate = 44100, bit_depth = 32, ..., normalize = TRUE)
 }
 \arguments{
 \item{path}{Path to file that will be read or written to.}
