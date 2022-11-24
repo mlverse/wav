@@ -6,7 +6,9 @@ Authors@R: c(
     person(family = "Posit, PBC", role = c("cph")),
     person("David", "Reid", role = c("cph"), comment = "For the vendored dr_wav.h code.")
     )
-Description: What the package does (one paragraph).
+Description: Efficiently read and write 'WAV' audio files. Support for unsigned 8 bit
+  'PCM', signed 12, 16, 24 and 32 bit 'PCM', 'IEEE' 32 and 64 bit floating point and
+  other encodings.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -17,7 +19,8 @@ Imports:
     Rcpp
 Suggests: 
     covr,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    patrick
 Config/testthat/edition: 3
 SystemRequirements: C++11
 URL: https://github.com/mlverse/wav,
