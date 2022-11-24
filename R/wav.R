@@ -45,6 +45,10 @@ write_wav <- function(x, path, sample_rate = 44100, bit_depth = 32, ..., normali
   if (length(list(...)) > 0)
     stop("... shouldn't be used. Maybe you have a typo in the argument name?")
 
+  if (nrow(x) > 65535) {
+    stop("Number of channels exceeded. Maximum is ", 65535, " got ", nrow(x))
+  }
+
   if (is.integer(x)) {
     write_wav_int(x, path, sample_rate = sample_rate, bit_depth, normalize)
   } else if (is.double(x)) {

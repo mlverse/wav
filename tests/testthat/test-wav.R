@@ -63,3 +63,33 @@ test_that("can use normalize for int16", {
 
   expect_true(max(as.numeric(x) - as.numeric(x2)) <= 10^(-log10(2^16) + 1))
 })
+
+test_that("errors on writing", {
+  temp <- tempfile()
+
+  expect_error(
+    write_wav(matrix("a", nrow = 2, ncol = 1000), path = temp),
+    regexp = "Only integers"
+  )
+
+  expect_error(
+    write_wav(matrix(0, nrow = 655555555, ncol = 2), path = temp),
+    regexp = "Number of channels"
+  )
+
+  expect_error(
+    write_wav(matrix(0, nrow = 2, ncol = 1000), path = temp, bit_depth = 24),
+    regexp = "Can't write file with"
+  )
+
+  expect_error(
+    write_wav(matrix(0, nrow = 2, ncol = 1000), path = temp, bit_depth = 24),
+    regexp = "Can't write file with"
+  )
+
+  expect_error(
+    write_wav(matrix(0L, nrow = 2, ncol = 1000), path = temp, bit_depth = 24),
+    regexp = "Can't write file with"
+  )
+
+})
