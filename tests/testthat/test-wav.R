@@ -37,3 +37,16 @@ patrick::with_parameters_test_that("Can write from ints with multiple depths:", 
   },
   bit_depth = c(8, 16, 32)
 )
+
+test_that("can use normalize", {
+  x <- read_wav(test_path("resources/test-audio.wav"))
+  int_x <- matrix(as.integer(trunc((x+1)/2*255)), nrow = 2)
+
+  temp <- tempfile()
+  y <- write_wav(int_x, temp, bit_depth = 8, normalize = FALSE)
+
+  expect_true(y)
+  x2 <- read_wav(temp)
+
+  expect_true(max(as.numeric(x) - as.numeric(x2)) <= 10^(-log10(2^8) + 1))
+})

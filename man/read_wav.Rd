@@ -7,7 +7,7 @@
 \usage{
 read_wav(path)
 
-write_wav(x, path, sample_rate = 44100, bit_depth = 32)
+write_wav(x, path, sample_rate = 44100, bit_depth = 32, ..., normalize = FALSE)
 }
 \arguments{
 \item{path}{Path to file that will be read or written to.}
@@ -15,12 +15,23 @@ write_wav(x, path, sample_rate = 44100, bit_depth = 32)
 \item{x}{Numeric matrix with dimensions \verb{[n_channels, n_samples]}. Values in
 the matrix should be \verb{<double>} in the range \verb{[-1, 1]} or integers in the range
 \verb{[-.Machine$integer.max, .Machine$integer.max]} ie. 32 bits signed integers
-like R integers containing the amplitudes.}
+like R integers containing the amplitudes. Depending on the value of \code{normalize}
+and the \code{bit_depth} you can use different ranges.}
 
 \item{sample_rate}{Sample rate in Hz of the associated samples.}
 
 \item{bit_depth}{Bit depth of associated samples. This only affects the precision
 data is saved to the file.}
+
+\item{...}{Currently unused.}
+
+\item{normalize}{Boolean idicating wheter integers should be normalized before
+writing. Only used when \code{\link[=write_wav]{write_wav()}} is called with a integer matrix.
+For example when you write a sample with a amplitude value of \code{2147483647}
+and \code{bit_depth = 8}, you would need to normalize this integer so it
+actually refers to the maximum unsigned int available (i.e. \code{255}).
+You can avoid normalizing when the amplitudes are already in the correct integer
+range for the \code{bit_depth} you are saving, in this case provide \code{normalize = FALSE}.}
 }
 \value{
 \itemize{
