@@ -7,3 +7,5 @@
 ^pkgdown$
 ^LICENSE\.md$
 ^bench$
+^CRAN-SUBMISSION$
+^cran-comments\.md$
