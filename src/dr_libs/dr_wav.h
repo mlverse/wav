@@ -163,18 +163,8 @@ typedef unsigned int            drwav_uint32;
     typedef   signed __int64    drwav_int64;
     typedef unsigned __int64    drwav_uint64;
 #else
-    #if defined(__clang__) || (defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 6)))
-        #pragma GCC diagnostic push
-        #pragma GCC diagnostic ignored "-Wlong-long"
-        #if defined(__clang__)
-            #pragma GCC diagnostic ignored "-Wc++11-long-long"
-        #endif
-    #endif
     typedef   signed long long  drwav_int64;
     typedef unsigned long long  drwav_uint64;
-    #if defined(__clang__) || (defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 6)))
-        #pragma GCC diagnostic pop
-    #endif
 #endif
 #if defined(__LP64__) || defined(_WIN64) || (defined(__x86_64__) && !defined(__ILP32__)) || defined(_M_X64) || defined(__ia64) || defined (_M_IA64) || defined(__aarch64__) || defined(_M_ARM64) || defined(_M_ARM64EC) || defined(__powerpc64__)
     typedef drwav_uint64        drwav_uintptr;
@@ -1358,10 +1348,6 @@ DRWAV_API drwav_bool32 drwav_fourcc_equal(const drwav_uint8* a, const char* b);
 #ifndef dr_wav_c
 #define dr_wav_c
 
-#ifdef __MRC__
-/* MrC currently doesn't compile dr_wav correctly with any optimizations enabled. */
-#pragma options opt off
-#endif
 
 #include <stdlib.h>
 #include <string.h>
@@ -8546,10 +8532,6 @@ DRWAV_API drwav_bool32 drwav_fourcc_equal(const drwav_uint8* a, const char* b)
         a[3] == b[3];
 }
 
-#ifdef __MRC__
-/* Undo the pragma at the beginning of this file. */
-#pragma options opt reset
-#endif
 
 #endif  /* dr_wav_c */
 #endif  /* DR_WAV_IMPLEMENTATION */
