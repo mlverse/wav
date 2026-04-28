@@ -1,8 +1,9 @@
 Package: wav
 Title: Read and Write WAV Files
-Version: 0.1.1.9000
+Version: 0.2.0
 Authors@R: c(
-    person("Daniel", "Falbel", email = "daniel@rstudio.com", role = c("aut", "cre", "cph")),
+    person("Tomasz", "Kalinowski", role = c("ctb", "cre"), email = "tomasz@posit.co"),
+    person("Daniel", "Falbel", email = "dfalbel@gmail.com", role = c("aut", "cph")),
     person(family = "Posit, PBC", role = c("cph")),
     person("David", "Reid", role = c("cph"), comment = "For the vendored dr_wav.h code.")
     )
@@ -12,7 +13,7 @@ Description: Efficiently read and write Waveform (WAV) audio files <https://en.w
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.3.3
 LinkingTo: 
     Rcpp
 Imports: 
