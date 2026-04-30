@@ -14,7 +14,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/mlverse/wav/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/mlverse/wav/blob/v0.2.0/DESCRIPTION)
 
 Falbel D (2026). *wav: Read and Write WAV Files*. R package version
 0.2.0, <https://github.com/mlverse/wav>.
