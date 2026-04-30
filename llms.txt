@@ -10,6 +10,7 @@ encodings. It uses the
 `wav` can be installed with:
 
 ``` r
+
 install.packages("wav")
 ```
 
@@ -17,6 +18,7 @@ You can install the development version of wav from
 [GitHub](https://github.com/) with:
 
 ``` r
+
 # install.packages("devtools")
 devtools::install_github("mlverse/wav")
 ```
