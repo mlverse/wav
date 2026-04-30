@@ -14,15 +14,15 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/mlverse/wav/blob/v0.2.0/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/mlverse/wav/blob/main/DESCRIPTION)
 
 Falbel D (2026). *wav: Read and Write WAV Files*. R package version
-0.2.0, <https://github.com/mlverse/wav>.
+0.2.0.9000, <https://github.com/mlverse/wav>.
 
     @Manual{,
       title = {wav: Read and Write WAV Files},
       author = {Daniel Falbel},
       year = {2026},
-      note = {R package version 0.2.0},
+      note = {R package version 0.2.0.9000},
       url = {https://github.com/mlverse/wav},
     }
